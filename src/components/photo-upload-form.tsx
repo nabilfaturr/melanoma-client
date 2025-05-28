@@ -18,8 +18,8 @@ const URL_ENDPOINT =
     ? "/api/v1"
     : process.env.NEXT_PUBLIC_API_URL || "/api/v1";
 
-// Maximum file size in bytes (1 MB)
-const MAX_FILE_SIZE = 1 * 1024 * 1024;
+// Maximum file size in bytes (5 MB)
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const MAX_FILE_QTY = 50; // Maximum number of files allowed
 
