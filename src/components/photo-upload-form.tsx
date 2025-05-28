@@ -13,7 +13,10 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ResponseObject } from "@/types/response"; // Hapus ResponseObjectArray yang tidak digunakan
 import { useResultsStore } from "@/store/results-store";
 
-const URL_ENDPOINT = process.env.NEXT_PUBLIC_API_URL || "/api/v1";
+const URL_ENDPOINT =
+  process.env.NODE_ENV === "production"
+    ? "/api/v1"
+    : process.env.NEXT_PUBLIC_API_URL || "/api/v1";
 
 // Maximum file size in bytes (1 MB)
 const MAX_FILE_SIZE = 1 * 1024 * 1024;
