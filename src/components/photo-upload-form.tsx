@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { useState, useRef } from "react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image"; // Import komponen Image dari Next.js
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -36,7 +36,7 @@ export function PhotoUploadForm() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  // const router = useRouter();
+  const router = useRouter();
   const { addResults, setLoading, setError } = useResultsStore();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,7 +160,7 @@ export function PhotoUploadForm() {
         setUploadProgress(0);
       }, 1000);
 
-      // router.push("/results");
+      router.push("/results");
     } catch (error) {
       console.error("Upload error:", error);
       setUploadError("Failed to upload files. Please try again.");
