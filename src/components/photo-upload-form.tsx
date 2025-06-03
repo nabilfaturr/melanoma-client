@@ -6,22 +6,6 @@ import type { ResponseObject } from "@/types/response";
 import { UploadImageTab } from "./upload-image-tab";
 import { SampleImageTab } from "./sample-image-tab";
 
-const URL_ENDPOINT =
-  process.env.NODE_ENV === "production"
-    ? "/api/v1"
-    : process.env.NEXT_PUBLIC_API_URL || "/api/v1";
-
-// Maximum file size in bytes (5 MB)
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const MAX_FILE_QTY = 50;
-
-// Sample images data
-const sampleImages = Array.from({ length: 50 }, (_, i) => ({
-  id: i + 1,
-  src: `/placeholder.svg?height=120&width=120&text=Sample${i + 1}`,
-  alt: `Sample image ${i + 1}`,
-}));
-
 export type FileWithPreview = {
   file: File;
   preview: string;

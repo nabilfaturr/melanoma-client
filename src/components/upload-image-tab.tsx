@@ -116,7 +116,7 @@ export function UploadImageTab({
       // ✅ Single FormData with multiple files
       const formData = new FormData();
 
-      validFiles.forEach((fileWithPreview, index) => {
+      validFiles.forEach((fileWithPreview) => {
         formData.append(`files`, fileWithPreview.file);
         formData.append(`filenames`, fileWithPreview.file.name);
         formData.append(`fileIds`, fileWithPreview.id);
@@ -228,11 +228,11 @@ export function UploadImageTab({
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 max-h-[400px] overflow-y-auto p-1">
-            {files.map((file) => (
+            {files.map((fileWithPreview) => (
               <div
-                key={file.id}
+                key={fileWithPreview.id}
                 className={`relative group rounded-lg overflow-hidden border ${
-                  file.error ? "border-red-300" : "border-gray-200"
+                  fileWithPreview.error ? "border-red-300" : "border-gray-200"
                 }`}
               >
                 <div className="aspect-square relative">
@@ -241,12 +241,12 @@ export function UploadImageTab({
                   </div>
 
                   <Image
-                    src={file.preview || "/placeholder.svg"}
-                    alt={file.file.name}
+                    src={fileWithPreview.preview || "/placeholder.svg"}
+                    alt={fileWithPreview.file.name}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
-                    onLoad={() => URL.revokeObjectURL(file.preview)}
+                    onLoad={() => URL.revokeObjectURL(fileWithPreview.preview)}
                     unoptimized
                   />
 
@@ -254,7 +254,7 @@ export function UploadImageTab({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      removeFile(file.id);
+                      removeFile(fileWithPreview.id);
                     }}
                     className="absolute top-1 right-1 bg-black/50 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                     aria-label="Remove file"
@@ -263,9 +263,9 @@ export function UploadImageTab({
                   </button>
                 </div>
 
-                {file.error && (
+                {fileWithPreview.error && (
                   <div className="absolute bottom-0 left-0 right-0 bg-red-500/90 text-white text-xs p-1 text-center">
-                    Error: {file.error}
+                    Error: {fileWithPreview.error}
                   </div>
                 )}
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useResultsStore } from "@/store/results-store";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,9 @@ export default function ResultsPage() {
   } | null>(null);
 
   // Pastikan results adalah array
-  const safeResults = Array.isArray(results) ? results : [];
+  const safeResults = useMemo(() => {
+    return Array.isArray(results) ? results : [];
+  }, [results]);
 
   useEffect(() => {
     // Redirect jika tidak ada hasil
